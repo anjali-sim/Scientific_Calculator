@@ -112,3 +112,70 @@ function floor() {
   function fe() {
     input.value = Number(input.value).toExponential().toString();
   }
+
+    // 5th Row Buttons
+  //returns square of a number
+  // Eg: 5^2 = 25
+  function square() {
+    input.value = Math.pow(input.value, 2);
+  }
+  // divide 1 / number
+  // Eg: 1/2 = 0.5
+  function byX() {
+    input.value = 1 / input.value;
+  }
+  // returns the value of E^x, where E is Euler's number
+  // Eg: E^5 = 148.4131591025766
+  function exponent() {
+    input.value = Math.exp(input.value);
+  }
+  function modulo(x, y) {
+    input.value = x%y;
+  }
+  
+  // 6th Row Buttons
+  // returns the square root of a number
+  // Eg: sqaureRoot(25) = 5
+  function sqrRoot() {
+    input.value = Math.sqrt(input.value);
+  }
+  // returns the factorial of a number
+  // Eg: 5! = 120
+  function factorial() {
+    let number = Number(input.value);
+    if (number == 0 || number == 1) {
+      input.value = "1";
+    } else if (number > 1) {
+      for (let i = number - 1; i > 1; i--) {
+        number = number * i;
+      }
+      input.value = number;
+    }
+  }
+  
+  // gives 10 to the power of a number
+  // Eg: 10^3 = 1000
+  function raise_to_10() {
+    input.value = Math.pow(10, input.value);
+  }
+  // returns log10 of a number
+  function log() {
+    input.value = Math.log10(input.value);
+  }
+  // returns ln of a number
+  function ln() {
+    input.value = Math.log(input.value);
+  }
+  //returns a number raised to another number
+  let x, y;
+  function x_raise_y() {
+    input.value += "^";
+  }
+  // clears one number from the right end
+  function backspace() {
+    var a = input.value;
+    input.value = a.substr(0, a.length - 1);
+  }
+  function signChange() { 
+    input.value = (-1) * (input.value);
+  }
