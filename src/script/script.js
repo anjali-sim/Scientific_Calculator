@@ -226,3 +226,60 @@ function logx_base_y(value){
   input.value += value;
   log = 1;
 }
+
+
+function evaluateWithPrecedence(expression) {
+    const precedence = {
+      '+': 1,
+      '-': 1,
+      '*': 2,
+      '/': 2,
+      '^': 3,
+  
+      '(': 4,
+      ')': 4,
+    };
+    
+    const operators = [];
+    const operands = [];
+  
+    expression.split(' ').forEach((token) => {
+      if (token in precedence) {
+        while (operators.length > 0 && precedence[token] <= precedence[operators[operators.length - 1]]) {
+          const op = operators.pop();
+          const right = operands.pop();
+          const left = operands.pop();
+          operands.push(applyOp(left, right, op));
+        }
+        operators.push(token);
+      } else {
+        operands.push(parseFloat(token));
+      }
+    });
+  
+    while (operators.length > 0) {
+      const op = operators.pop();
+      const right = operands.pop();
+      const left = operands.pop();
+      operands.push(applyOp(left, right, op));
+    }
+  
+    return operands.pop();
+  }
+  
+  function applyOp(left, right, op) {
+    switch (op) {
+      case '+':
+        return left + right;
+      case '-':
+        return left - right;
+      case '*':
+        return left * right;
+      case '/':
+        return left / right;
+      case '^':
+        return Math.pow(left, right);
+      default:
+        throw new Error(`Unknown operator: ${op}`);
+    }
+  }
