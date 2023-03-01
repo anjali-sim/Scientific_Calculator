@@ -9,7 +9,7 @@ body {
     align-content: center;
     margin: auto;
     margin-top: 200px;
-    height: 746px;
+    height: 770px;
 }
 
 .col {
@@ -125,6 +125,13 @@ body {
 }
 
 /* For changing dropdown */
-.display_2{
+.display_2 {
     display: none;
+}
+
+.text-center {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    height: 25px;
 }

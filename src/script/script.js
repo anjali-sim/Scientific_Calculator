@@ -223,18 +223,34 @@ function signChange() {
   input.value = -1 * input.value;
 }
 
+let arr = [];
+let numArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 // function to evaluate the basic expressions
 function calculate() {
   var input = document.getElementById("input");
   input.value = input.value.replaceAll("^", "**");
   var result = input.value;
-  function cal(user) {
-    return new Function("return " + user)();
+  arr.push(input.value);
+  let va = result.charAt(result.length - 1);
+  console.log(arr);
+  console.log(arr[arr.length - 1]);
+  console.log(va);
+  // Error handling
+  try {
+    function cal(user) {
+      return new Function("return " + user)();
+    }
+    const output = cal(`${result}`);
+    console.log(output);
+    document.getElementById("input").value = output;
+  } catch (err) {
+    const errDiv = document.getElementById("error-div");
+    errDiv.textContent = "Invalid Input!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
   }
-  const output = cal(`${result}`);
-  console.log(output);
-
-  document.getElementById("input").value = output;
 }
 
 // function to toggle the buttons
