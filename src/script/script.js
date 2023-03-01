@@ -179,3 +179,50 @@ function floor() {
   function signChange() { 
     input.value = (-1) * (input.value);
   }
+
+  function cr() {
+    document.getElementById("mc").disabled = false;
+    document.getElementById("mr").disabled = false;
+  }
+  // function to clear the memory
+  memory_stack = [];
+  function memory_clear() {
+    memory_stack = [];
+  }
+  // function to recall the memory
+  function memory_recall() {
+    input.value = memory_stack[memory_stack.length - 1].toString();
+  }
+  // function to add a specific number to a memory
+  function memory_add() {
+    cr();
+    if (memory_stack.length == 1) {
+      memory_stack.push(parseInt(input.value));
+    } else {
+      memory_stack[memory_stack.length - 1] += parseInt(input.value);
+    }
+  }
+  // function to subtract a specific number from the memory
+  function memory_sub() {
+    cr();
+    if (memory_stack.length == 0) {
+      memory_stack.push(-1 * parseInt(input.value));
+    } else {
+      memory_stack[memory_stack.length - 1] -= parseInt(input.value);
+    }
+  }
+  // function to save the memory
+  function memory_save() {
+    cr();
+    if (memory_stack.length == 0) {
+      memory_stack.push(parseFloat(input.value));
+    } else {
+      console.log("add");
+      memory_stack.push(parseFloat(input.value));
+    }
+  }
+let logx = 0;
+function logx_base_y(value){
+  input.value += value;
+  log = 1;
+}
