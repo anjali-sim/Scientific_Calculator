@@ -123,3 +123,8 @@ body {
 #answer:hover {
     background-color: #77C3EC;
 }
+
+/* For changing dropdown */
+.display_2{
+    display: none;
+}
