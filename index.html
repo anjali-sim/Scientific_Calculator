@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="main-div">
     <div class="calculator-body">
       <!-- For the input field -->
       <div class="display">
@@ -29,18 +29,18 @@
       <div class="functions">
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="deg" id="deg">DEG</button>
-            <button type="button" class="btn" value="f-e" id="f-e">F-E</button>
+            <button type="button" class="btn" value="deg" id="deg" onclick="deg_to_radian()">DEG</button>
+            <button type="button" class="btn" value="f-e" id="f-e" onclick="fe()">F-E</button>
           </div>
         </div>
         <!-- 2nd row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="mc" id="mc" disabled>MC</button>
-            <button type="button" class="btn" value="mr" id="mr" disabled>MR</button>
-            <button type="button" class="btn" value="m+" id="m+">M+</button>
-            <button type="button" class="btn" value="m-" id="m-">M-</button>
-            <button type="button" class="btn" value="ms" id="ms">MS</button>
+            <button type="button" class="btn" value="mc" id="mc" onclick="memory_clear()">MC</button>
+            <button type="button" class="btn" value="mr" id="mr" onclick="memory_recall()">MR</button>
+            <button type="button" class="btn" value="m+" id="m+" onclick="memory_add()">M+</button>
+            <button type="button" class="btn" value="m-" id="m-" onclick="memory_sub()">M-</button>
+            <button type="button" class="btn" value="ms" id="ms" onclick="memory_save()">MS</button>
           </div>
         </div>
         <!-- 3rd row buttons -->
@@ -87,6 +87,7 @@
               <!-- dropdown for different functions -->
               <ul class="dropdown-menu">
                 <div class="d-flex division-view">
+
                   <li>
                     <button class="dropdown-item" value="floor" onclick="floor()">&#8970;x&#8971;</button>
                   </li>
@@ -111,29 +112,35 @@
         <!-- 4th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="2^nd" id="button-style">2<sup>nd</sup></button>
+            <button class="change" id="button-style"
+              onclick="change_dropdown('display_2','display_1')">2<sup>nd</sup></button>
             <button type="button" class="btn" value="pi" class="pi" id="button-style" onclick="pi()">π</button>
             <button type="button" class="btn" value="euler-number" id="button-style" onclick="euler()">e</button>
-            <button type="button" class="btn" id="button-style" onclick="clearSpace()">C</button>
-            <button type="button" class="btn" value="cancel" id="button-style-red" onclick="backspace()"><img
+            <button type="button" class="btn" id="button-style" onclick="clearAll()">C</button>
+            <button type="button" class="btn" value="cancel" id="button-style-red" onclick="remove()"><img
                 src="src/assets/images/cancel.png" alt="cancel" class="image1"></button>
           </div>
         </div>
         <!-- 5th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="x^2" id="button-style" onclick="square()">x<sup>2</sup></button>
+            <button type="button" class="display_1" class="btn" value="x^2" id="button-style"
+              onclick="square()">x<sup>2</sup></button>
+            <button type="button" class="display_2" class="btn" value="x^3" id="button-style"
+              onclick="cube()">x<sup>3</sup></button>
             <button type="button" class="btn" value="1/x" id="button-style" onclick="byX()"><small>1/x</small></button>
             <button type="button" class="btn" value="|x|" id="button-style" onclick="mod()">|x|</button>
             <button type="button" class="btn" value="exp" id="button-style" onclick="exponent()">exp</button>
-            <button type="button" class="btn" value="mode" id="button-style" onclick="mod()">mod</button>
+            <button type="button" class="btn" value="%" id="button-style" onclick="modulo()">mod</button>
           </div>
         </div>
         <!-- 6th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="sqrt" id="button-style"
+            <button type="button" class="display_1" class="btn" value="sqrt" id="button-style"
               onclick="sqrRoot()"><sup>2</sup>&radic;x</button>
+            <button type="button" class="display_2" class="btn" value="cbrt" id="button-style"
+              onclick="cubeRoot()"><sup>3</sup>&radic;x</button>
             <button type="button" class="btn" value="(" id="button-style" onclick="display(value)">(</button>
             <button type="button" class="btn" value=")" id="button-style" onclick="display(value)">)</button>
             <button type="button" class="btn" value="factorial" id="button-style" onclick="factorial()">n!</button>
@@ -143,18 +150,23 @@
         <!-- 7th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="x^y" id="button-style" onclick="x_raise_y()">x<sup>y</sup></button>
+            <button type="button" class="display_1" class="btn" value="^" id="button-style"
+              onclick="x_raise_y()">x<sup>y</sup></button>
+            <button type="button" class="display_2" class="btn" value="2^x" id="button-style"
+              onclick="raise_to_2()">2<sup>x</sup></button>
             <button type="button" class="btn" value="7" id="button-design" onclick="display(value)">7</button>
             <button type="button" class="btn" value="8" id="button-design" onclick="display(value)">8</button>
             <button type="button" class="btn" value="9" id="button-design" onclick="display(value)">9</button>
-            <button type="button" class="btn" value="x" id="button-style" onclick="display(value)">&#215;</button>
+            <button type="button" class="btn" value="*" id="button-style" onclick="display(value)">&#215;</button>
           </div>
         </div>
         <!-- 8th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="10^x" id="button-style"
+            <button type="button" class="display_1" class="btn" value="10^x" id="button-style"
               onclick="raise_to_10()">10<sup>x</sup></button>
+            <button type="button" class="display_2" class="btn" value="log1p" id="button-style"
+              onclick="log_plus()">log1p</button>
             <button type="button" class="btn" value="4" id="button-design" onclick="display(value)">4</button>
             <button type="button" class="btn" value="5" id="button-design" onclick="display(value)">5</button>
             <button type="button" class="btn" value="6" id="button-design" onclick="display(value)">6</button>
@@ -164,7 +176,10 @@
         <!-- 9th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="log" id="button-style" onclick="log()">log</button>
+            <button type="button" class="display_1" class="btn" value="log" id="button-style"
+              onclick="log()">log</button>
+            <button type="button" class="display_2" class="btn" value="expm1" id="button-style"
+              onclick="exp_minus()">expm1</button>
             <button type="button" class="btn" value="1" id="button-design" onclick="display(value)">1</button>
             <button type="button" class="btn" value="2" id="button-design" onclick="display(value)">2</button>
             <button type="button" class="btn" value="3" id="button-design" onclick="display(value)">3</button>
@@ -174,18 +189,20 @@
         <!-- 10th row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="ln" id="button-style" onclick="ln()">ln</button>
-            <button type="button" class="btn" value="plus-minus"
-              id="button-design"><small>&#43;/&#8722;</small></button>
+            <button type="button" class="display_1" class="btn" value="ln" id="button-style" onclick="ln()">ln</button>
+            <button type="button" class="display_2" class="btn" value="e^x" id="button-style"
+              onclick="e_raise_x()">e<sup>x</sup></button>
+            <button type="button" class="btn" value="plus-minus" id="button-design"
+              onclick="signChange()"><small>&#43;/&#8722;</small></button>
             <button type="button" class="btn" value="0" id="button-design" onclick="display(value)">0</button>
             <button type="button" class="btn" value="." id="button-design" onclick="display(value)">.</button>
-            <button type="button" class="btn" id="button-style-green" onclick="evaluate(expression)">=</button>
+            <button type="button" class="btn" id="button-style-green" onclick="calculate()">=</button>
           </div>
         </div>
 
       </div>
     </div>
-    <script src="./src/script/script.js"></script>
+    <script src="./src/script/practice.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"></script>
