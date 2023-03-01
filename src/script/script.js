@@ -3,25 +3,62 @@ function display(value) {
        
 }
 
-// Trigonometry Functions
-function sin() {
-input.value = (Math.sin(Math.PI / 180 * input.value));
-}
-function cos() {
-input.value = (Math.cos(Math.PI / 180 * input.value));
-}
-function tan() {
-input.value = (Math.tan(Math.PI / 180 * input.value));
-}
-function cot() {
-input.value = (1 / Math.tan(Math.PI / 180 * input.value));
-}
-function sec() {
-input.value = (1 / Math.cos(Math.PI / 180 * input.value));
-}
-function cosec() {
-input.value = (1 / Math.sin(Math.PI / 180 * input.value));
-}
+// 3rd Row Buttons
+  // Trigonometry Functions
+  // returns the sine of a number in radians (but multiplied it by 180 to convert it to radians)
+  function sin() {
+    if(deg == 0) {
+        input.value = Math.sin((Math.PI / 180) * input.value);
+    }
+    else{
+        input.value = (Math.sin(input.value));
+    }
+  }
+  // returns the cosine of a number in radians (but multiplied it by 180 to convert it to radians)
+  function cos() {
+    if(deg == 0) {
+    input.value = Math.cos((Math.PI / 180) * input.value);
+    }
+    else {
+        input.value = (Math.cos(input.value));
+    }
+  }
+  // returns the tangent of a number in radians (but multiplied it by 180 to convert it to radians)
+  function tan() {
+    if(deg == 0) {
+        input.value = Math.tan((Math.PI / 180) * input.value);
+    }
+    else {
+        input.value = (Math.tan(input.value));
+    }
+  }
+  // returns cot by using 1 / tan function
+  function cot() {
+    if(deg == 0) {
+        input.value = 1 / Math.tan((Math.PI / 180) * input.value);
+    }
+    else {
+        input.value = 1 / Math.tan(input.value);
+    }
+  }
+  // returns cot by using 1 / cos function
+  function sec() {
+    if(deg == 0) {
+        input.value = 1 / Math.cos((Math.PI / 180) * input.value);
+    }
+    else {
+        input.value = 1 / Math.cos(input.value);
+    }
+  }
+  // returns cot by using 1 / sin function
+  function cosec() {
+    if(deg == 0) {
+        input.value = 1 / Math.sin((Math.PI / 180) * input.value);
+    }
+    else {
+        input.value = 1 / Math.sin(input.value);
+    }
+  }
 
 function floor() {
     input.value = Math.floor(input.value);
@@ -57,4 +94,21 @@ function floor() {
   // removes one number from the end
   function remove() {
     input.value = input.value.slice(0, -1);
+  }
+
+  let deg = 0;
+  function deg_to_radian() {
+    if (deg == 0) {
+        deg = 1;
+        document.getElementById("deg").innerHTML = "RAD";
+    }
+    else {
+        deg = 0;
+        document.getElementById("deg").innerHTML = "DEG";
+    }
+
+}
+  // displays answers in scientific notation
+  function fe() {
+    input.value = Number(input.value).toExponential().toString();
   }
