@@ -25,6 +25,8 @@
           </div>
         </div>
       </div>
+      <!-- For displaying the error message -->
+      <div class="text-center" id="error-div"></div>
       <!-- 1st row buttons -->
       <div class="functions">
         <div class="row">
@@ -36,8 +38,8 @@
         <!-- 2nd row buttons -->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn" value="mc" id="mc" onclick="memory_clear()">MC</button>
-            <button type="button" class="btn" value="mr" id="mr" onclick="memory_recall()">MR</button>
+            <button type="button" class="btn" value="mc" id="mc" onclick="memory_clear()" disabled>MC</button>
+            <button type="button" class="btn" value="mr" id="mr" onclick="memory_recall()" disabled>MR</button>
             <button type="button" class="btn" value="m+" id="m+" onclick="memory_add()">M+</button>
             <button type="button" class="btn" value="m-" id="m-" onclick="memory_sub()">M-</button>
             <button type="button" class="btn" value="ms" id="ms" onclick="memory_save()">MS</button>
