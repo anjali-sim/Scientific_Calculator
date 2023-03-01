@@ -283,3 +283,50 @@ function evaluateWithPrecedence(expression) {
         throw new Error(`Unknown operator: ${op}`);
     }
   }
+
+
+let d = 0;
+function change_dropdown(display_1, display_2) {
+  if (d == 1) {
+      for (let x of document.getElementsByClassName(display_2)) {
+          x.style.display = " inline-block";
+      }
+      for (let x of document.getElementsByClassName(display_1)) {
+          x.style.display = "none";
+      }
+      d = 0;
+  }
+  else {
+      for (let x of document.getElementsByClassName(display_1)) {
+          x.style.display = " inline-block";
+      }
+      for (let x of document.getElementsByClassName(display_2)) {
+          x.style.display = "none";
+      }
+      d = 1;
+  }
+}
+
+function cube() {
+    input.value = Math.pow(input.value, 3);
+  }
+  
+  function cubeRoot() {
+    input.value = Math.cbrt(input.value);
+  }
+  
+  function log_plus() {
+    input.value = Math.log1p(input.value);
+  }
+  
+  function raise_to_2() {
+    input.value = Math.pow(2, input.value);
+  }
+  
+  function exp_minus() {
+    input.value = Math.expm1(input.value);
+  }
+  
+  function e_raise_x() {
+    input.value = Math.pow(Math.E, input.value);
+  }
