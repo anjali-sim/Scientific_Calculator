@@ -1,9 +1,73 @@
+//Input Display
+// displays the number expression
 function display(value) {
     input.value += value;
-       
-}
+    console.log(value)
+  }
 
-// 3rd Row Buttons
+  //1st Row Buttons
+  // to toggle the button between degree and radian
+  let deg = 0;
+  function deg_to_radian() {
+    if (deg == 0) {
+        deg = 1;
+        document.getElementById("deg").innerHTML = "RAD";
+    }
+    else {
+        deg = 0;
+        document.getElementById("deg").innerHTML = "DEG";
+    }
+}
+  // displays answers in scientific notation
+  function fe() {
+    input.value = Number(input.value).toExponential().toString();
+  }
+
+  //2nd Row Buttons
+  //Memory Functions
+  function cr() {
+    document.getElementById("mc").disabled = false;
+    document.getElementById("mr").disabled = false;
+  }
+  // function to clear the memory
+  memory_stack = [];
+  function memory_clear() {
+    memory_stack = [];
+  }
+  // function to recall the memory
+  function memory_recall() {
+    input.value = memory_stack[memory_stack.length - 1].toString();
+  }
+  // function to add a specific number to a memory
+  function memory_add() {
+    cr();
+    if (memory_stack.length == 1) {
+      memory_stack.push(parseInt(input.value));
+    } else {
+      memory_stack[memory_stack.length - 1] += parseInt(input.value);
+    }
+  }
+  // function to subtract a specific number from the memory
+  function memory_sub() {
+    cr();
+    if (memory_stack.length == 0) {
+      memory_stack.push(-1 * parseInt(input.value));
+    } else {
+      memory_stack[memory_stack.length - 1] -= parseInt(input.value);
+    }
+  }
+  // function to save the memory
+  function memory_save() {
+    cr();
+    if (memory_stack.length == 0) {
+      memory_stack.push(parseFloat(input.value));
+    } else {
+      console.log("add");
+      memory_stack.push(parseFloat(input.value));
+    }
+  }
+  
+  // 3rd Row Buttons
   // Trigonometry Functions
   // returns the sine of a number in radians (but multiplied it by 180 to convert it to radians)
   function sin() {
@@ -59,8 +123,11 @@ function display(value) {
         input.value = 1 / Math.sin(input.value);
     }
   }
-
-function floor() {
+  
+  // Functions
+  // always rounds down and returns the largest integer less than or equal to a given number
+  // Eg: 5.85 = 5
+  function floor() {
     input.value = Math.floor(input.value);
   }
   // always rounds up and returns the smaller integer greater than or equal to a given number
@@ -78,7 +145,10 @@ function floor() {
   function mod() {
     input.value = Math.abs(input.value);
   }
-
+  
+  // 4th Row Buttons
+  // displays the value of PI
+  // Eg: 3.141592653589793
   function pi() {
     input.value = Math.PI;
   }
@@ -95,25 +165,8 @@ function floor() {
   function remove() {
     input.value = input.value.slice(0, -1);
   }
-
-  let deg = 0;
-  function deg_to_radian() {
-    if (deg == 0) {
-        deg = 1;
-        document.getElementById("deg").innerHTML = "RAD";
-    }
-    else {
-        deg = 0;
-        document.getElementById("deg").innerHTML = "DEG";
-    }
-
-}
-  // displays answers in scientific notation
-  function fe() {
-    input.value = Number(input.value).toExponential().toString();
-  }
-
-    // 5th Row Buttons
+  
+  // 5th Row Buttons
   //returns square of a number
   // Eg: 5^2 = 25
   function square() {
@@ -128,9 +181,6 @@ function floor() {
   // Eg: E^5 = 148.4131591025766
   function exponent() {
     input.value = Math.exp(input.value);
-  }
-  function modulo(x, y) {
-    input.value = x%y;
   }
   
   // 6th Row Buttons
@@ -180,111 +230,21 @@ function floor() {
     input.value = (-1) * (input.value);
   }
 
-  function cr() {
-    document.getElementById("mc").disabled = false;
-    document.getElementById("mr").disabled = false;
-  }
-  // function to clear the memory
-  memory_stack = [];
-  function memory_clear() {
-    memory_stack = [];
-  }
-  // function to recall the memory
-  function memory_recall() {
-    input.value = memory_stack[memory_stack.length - 1].toString();
-  }
-  // function to add a specific number to a memory
-  function memory_add() {
-    cr();
-    if (memory_stack.length == 1) {
-      memory_stack.push(parseInt(input.value));
-    } else {
-      memory_stack[memory_stack.length - 1] += parseInt(input.value);
-    }
-  }
-  // function to subtract a specific number from the memory
-  function memory_sub() {
-    cr();
-    if (memory_stack.length == 0) {
-      memory_stack.push(-1 * parseInt(input.value));
-    } else {
-      memory_stack[memory_stack.length - 1] -= parseInt(input.value);
-    }
-  }
-  // function to save the memory
-  function memory_save() {
-    cr();
-    if (memory_stack.length == 0) {
-      memory_stack.push(parseFloat(input.value));
-    } else {
-      console.log("add");
-      memory_stack.push(parseFloat(input.value));
-    }
-  }
-let logx = 0;
-function logx_base_y(value){
-  input.value += value;
-  log = 1;
+  // function to evaluate the basic expressions
+  function calculate() {
+    var input = document.getElementById("input");
+    input.value = input.value.replaceAll("^", "**");
+    var result = input.value;
+    function cal(user) {
+        return new Function("return " + user)();
+     }
+     const output = cal(`${result}`);
+     console.log(output)
+ 
+   document.getElementById("input").value = output;
 }
 
-
-function evaluateWithPrecedence(expression) {
-    const precedence = {
-      '+': 1,
-      '-': 1,
-      '*': 2,
-      '/': 2,
-      '^': 3,
-  
-      '(': 4,
-      ')': 4,
-    };
-    
-    const operators = [];
-    const operands = [];
-  
-    expression.split(' ').forEach((token) => {
-      if (token in precedence) {
-        while (operators.length > 0 && precedence[token] <= precedence[operators[operators.length - 1]]) {
-          const op = operators.pop();
-          const right = operands.pop();
-          const left = operands.pop();
-          operands.push(applyOp(left, right, op));
-        }
-        operators.push(token);
-      } else {
-        operands.push(parseFloat(token));
-      }
-    });
-  
-    while (operators.length > 0) {
-      const op = operators.pop();
-      const right = operands.pop();
-      const left = operands.pop();
-      operands.push(applyOp(left, right, op));
-    }
-  
-    return operands.pop();
-  }
-  
-  function applyOp(left, right, op) {
-    switch (op) {
-      case '+':
-        return left + right;
-      case '-':
-        return left - right;
-      case '*':
-        return left * right;
-      case '/':
-        return left / right;
-      case '^':
-        return Math.pow(left, right);
-      default:
-        throw new Error(`Unknown operator: ${op}`);
-    }
-  }
-
-
+// function to toggle the buttons
 let d = 0;
 function change_dropdown(display_1, display_2) {
   if (d == 1) {
@@ -307,40 +267,28 @@ function change_dropdown(display_1, display_2) {
   }
 }
 
+// 2nd Toggle Functions
+// function to calculate the cube of a number
 function cube() {
-    input.value = Math.pow(input.value, 3);
-  }
-  
-  function cubeRoot() {
-    input.value = Math.cbrt(input.value);
-  }
-  
-  function log_plus() {
-    input.value = Math.log1p(input.value);
-  }
-  
-  function raise_to_2() {
-    input.value = Math.pow(2, input.value);
-  }
-  
-  function exp_minus() {
-    input.value = Math.expm1(input.value);
-  }
-  
-  function e_raise_x() {
-    input.value = Math.pow(Math.E, input.value);
-  }
-
-    // function to evaluate the basic expressions
-    function calculate() {
-        var input = document.getElementById("input");
-        input.value = input.value.replaceAll("^", "**");
-        var result = input.value;
-        function cal(user) {
-            return new Function("return " + user)();
-         }
-         const output = cal(`${result}`);
-         console.log(output)
-     
-       document.getElementById("input").value = output;
-    }
+  input.value = Math.pow(input.value, 3);
+}
+// function to calculate the cube root
+function cubeRoot() {
+  input.value = Math.cbrt(input.value);
+}
+// function to calculate logarithm of 1+p number
+function log_plus() {
+  input.value = Math.log1p(input.value);
+}
+// function to calculate 2 to power of a number
+function raise_to_2() {
+  input.value = Math.pow(2, input.value);
+}
+// function to calculate e^x-1 where x is number
+function exp_minus() {
+  input.value = Math.expm1(input.value);
+}
+// function to calculate e^x where x is number
+function e_raise_x() {
+  input.value = Math.pow(Math.E, input.value);
+}
