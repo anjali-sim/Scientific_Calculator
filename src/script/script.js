@@ -1,11 +1,19 @@
-//Input Display
+// Input Display
 // displays the number expression
 function display(value) {
   input.value += value;
   console.log(value);
 }
+// function to restrict the alphabets
+function checkInput(ob) {
+  const invalidChars = /[^0-9|+|\-|*|/]/gi;
 
-//1st Row Buttons
+  if (invalidChars.test(ob.value)) {
+    ob.value = ob.value.replace(invalidChars, "");
+  }
+}
+
+// 1st Row Buttons
 // to toggle the button between degree and radian
 let deg = 0;
 function deg_to_radian() {
@@ -22,8 +30,9 @@ function fe() {
   input.value = Number(input.value).toExponential().toString();
 }
 
-//2nd Row Buttons
-//Memory Functions
+// 2nd Row Buttons
+// Memory Functions
+// function to make the buttons disabled to abled
 function cr() {
   document.getElementById("mc").disabled = false;
   document.getElementById("mr").disabled = false;
