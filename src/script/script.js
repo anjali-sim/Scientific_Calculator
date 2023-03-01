@@ -330,3 +330,17 @@ function cube() {
   function e_raise_x() {
     input.value = Math.pow(Math.E, input.value);
   }
+
+    // function to evaluate the basic expressions
+    function calculate() {
+        var input = document.getElementById("input");
+        input.value = input.value.replaceAll("^", "**");
+        var result = input.value;
+        function cal(user) {
+            return new Function("return " + user)();
+         }
+         const output = cal(`${result}`);
+         console.log(output)
+     
+       document.getElementById("input").value = output;
+    }
