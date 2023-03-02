@@ -2,7 +2,7 @@ body {
     width: 100%;
 }
 
-/* Style for calculator body */
+/* style for calculator body */
 .calculator-body {
     background-color: #dee0e0;
     width: 500px;
@@ -125,7 +125,7 @@ body {
 }
 
 /* For changing dropdown */
-.display_2 {
+.display2 {
     display: none;
 }
 
