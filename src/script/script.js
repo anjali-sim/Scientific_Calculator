@@ -1,203 +1,233 @@
+// variable used to toggle between degree and radian buttons
+let degree = 0;
+// array to perform the memory operations
+let memoryStack = [];
+// For x raise to y function
+let x, y;
+// for changing the dropdowns
+let dropdownChange = 0;
+
 /**
- * @function  display
- * @description  to display the number expression
+ * @function  displayInputValue
+ * @description  to display the number expression entered by the user
  * @params  string
- * {
- * value: string
- * }
- * @returns string
+ * value:  string
+ * @returns  void
  * Examples:
  * - 5+9 to 5+9
  */
-function display(value) {
+function displayInputValue(value) {
   input.value += value;
 }
 
-/** 
+/**
  * @function  checkInput
- * @description  to restrict the alphabets
+ * @description  validating to restrict the alphabets in the input field
  * @params  string
- * {
- * ob: string
- * }
- * Examples: if user enters alphabets from keyboard, then restrict it from entering the input field
+ * stringExpression:  string
+ * @returns  void
+ * Examples: if the user enters alphabets from keyboard, then restrict it from entering into the input field
  * - asfhjk to 0
  * - 5869*2 to 5869*2
  */
-function checkInput(ob) {
-  const invalidChars = /[^0-9|+|\-|*|/]/gi;
-  if (invalidChars.test(ob.value)) {
-    ob.value = ob.value.replace(invalidChars, "");
+function checkInput(stringExpression) {
+  const invalidChars = /[^0-9|+|\-|*|.|!|^|(|)|%/]/gi;
+  if (invalidChars.test(stringExpression.value)) {
+    stringExpression.value = stringExpression.value.replace(invalidChars, "");
   }
 }
 
 /**
- * @function  degToRadian
- * @description  to toggle the button between degree and radian
+ * @function  degreeToRadian
+ * @description  to toggle the button between degree(DEG) and radian(RAD)
+ * @params  none
  */
-let deg = 0;
-function degToRadian() {
-  if (deg == 0) {
-    deg = 1;
-    document.getElementById("deg").innerHTML = "RAD";
+function degreeToRadian() {
+  // if the degree variable is set to 0, then display the RAD(radian) button else DEG(degree) button
+  if (degree == 0) {
+    degree = 1;
+    document.getElementById("degree").innerHTML = "RAD";
   } else {
-    deg = 0;
-    document.getElementById("deg").innerHTML = "DEG";
+    degree = 0;
+    document.getElementById("degree").innerHTML = "DEG";
   }
 }
 
 /**
- * @function  fe
- * @description  to display answer in scientific notation
+ * @function  fixedToExponent
+ * @description  to display the answer in scientific notation
+ * @params  none
  * Examples:
  * - 8.36 to 8.36e+0
  * - 63598 to 6.3598e+4
  */
-function fe() {
+function fixedToExponent() {
   input.value = Number(input.value).toExponential().toString();
 }
 
 // Memory Functions
 /**
- * @function  cr
+ * @function  buttonDisableToAble
  * @description  to make the buttons disabled to abled
+ * @params  none
  */
-function cr() {
+function buttonDisableToAble() {
   document.getElementById("mc").disabled = false;
   document.getElementById("mr").disabled = false;
 }
-memory_stack = [];
+
 /**
  * @function  memoryClear
- * @description  function to clear the memory
+ * @description  to clear the memory
+ * @params  none
+ * Examples: The memoryStack array will be empty
  */
 function memoryClear() {
-  memory_stack = [];
+  memoryStack = [];
 }
+
 /**
  * @function  memoryRecall
- * @description  to recall the memory
+ * @description  to recall the value stored in memory
+ * @params  none
  */
 function memoryRecall() {
-  input.value = memory_stack[memory_stack.length-1].toString();
+  input.value = memoryStack[memoryStack.length - 1].toString();
 }
+
 /**
  * @function  memoryAdd
- * @description  to add a specific number to the last number in memory
+ * @description  to add a specific number to the last value in memory
+ * @params  none
  */
 function memoryAdd() {
-  cr();
-  if (memory_stack.length == 1) {
-    memory_stack.push(parseInt(input.value));
+  buttonDisableToAble();
+  if (memoryStack.length == 1) {
+    memoryStack.push(parseInt(input.value));
   } else {
-    memory_stack[memory_stack.length-1] += parseInt(input.value);
+    memoryStack[memoryStack.length - 1] += parseInt(input.value);
   }
 }
+
 /**
- * @function  memorySub
- * @description  to subtract a specific number from the last number in memory
+ * @function  memorySubtract
+ * @description  to subtract a specific number from the last value in memory
+ * @params  none
  */
-function memorySub() {
-  cr();
-  if (memory_stack.length == 0) {
-    memory_stack.push(-1 * parseInt(input.value));
+function memorySubtract() {
+  buttonDisableToAble();
+  if (memoryStack.length == 0) {
+    memoryStack.push(-1 * parseInt(input.value));
   } else {
-    memory_stack[memory_stack.length-1] -= parseInt(input.value);
+    memoryStack[memoryStack.length - 1] -= parseInt(input.value);
   }
 }
+
 /**
  * @function  memorySave
- * @description  to save the memory in an array
+ * @description  to save the value in memoryStack array
+ * @params  none
  */
 function memorySave() {
-  cr();
-  if (memory_stack.length == 0) {
-    memory_stack.push(parseFloat(input.value));
+  buttonDisableToAble();
+  if (memoryStack.length == 0) {
+    memoryStack.push(parseFloat(input.value));
   } else {
-    memory_stack.push(parseFloat(input.value));
+    memoryStack.push(parseFloat(input.value));
   }
 }
 
 // Trigonometry Functions
 /**
  * @function  sin
- * @description  returns the sine of a number in degrees or radians
+ * @description   evaluates the sine of a number in degrees or radians
+ * @params  none
  * Examples:
- * - sin(90 rad) to 0.8939966636005579
- * - sin(90 deg) to 1
+ * - sin(90 radian) to 0.8939966636005579
+ * - sin(90 degree) to 1
  */
 function sin() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = Math.sin((Math.PI / 180) * input.value);
   } else {
     input.value = Math.sin(input.value);
   }
 }
+
 /**
  * @function  cos
- * @description  returns the cosine of a number in degrees or radians
+ * @description  evaluates the cosine of a number in degrees or radians
+ * @params  none
  * Examples:
- * - cos(45 rad) to 0.5253219888177297
- * - cos(45 deg) to 0.7071067811865476
+ * - cos(45 radian) to 0.5253219888177297
+ * - cos(45 degree) to 0.7071067811865476
  */
 function cos() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = Math.cos((Math.PI / 180) * input.value);
   } else {
     input.value = Math.cos(input.value);
   }
 }
+
 /**
  * @function  tan
- * @description  returns the tangent of a number in degrees or radians
+ * @description  evaluates the tangent of a number in degrees or radians
+ * @params  none
  * Examples:
- * - tan(60 rad) to 0.320040389379563
- * - tan(60 deg) to 1.7320508075688767
+ * - tan(60 radian) to 0.320040389379563
+ * - tan(60 degree) to 1.7320508075688767
  */
 function tan() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = Math.tan((Math.PI / 180) * input.value);
   } else {
     input.value = Math.tan(input.value);
   }
 }
+
 /**
  * @function  cot
- * @description  returns the cotangent of a number in degrees or radians
+ * @description  evaluates the cotangent of a number in degrees or radians
+ * @params  none
  * Examples:
- * - cot(30 rad) to -0.15611995216165922
- * - cot(30 deg) to 1.7320508075688774
+ * - cot(30 radian) to -0.15611995216165922
+ * - cot(30 degree) to 1.7320508075688774
  */
 function cot() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = 1 / Math.tan((Math.PI / 180) * input.value);
   } else {
     input.value = 1 / Math.tan(input.value);
   }
 }
+
 /**
  * @function  sec
- * @description  returns the secant of a number in degrees or radians
+ * @description  evaluates the secant of a number in degrees or radians
+ * @params  none
  * Examples:
- * - sec(45 rad) to 1.9035944074044246
- * - sec(45 deg) to 1.414213562373095
+ * - sec(45 radian) to 1.9035944074044246
+ * - sec(45 degree) to 1.414213562373095
  */
 function sec() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = 1 / Math.cos((Math.PI / 180) * input.value);
   } else {
     input.value = 1 / Math.cos(input.value);
   }
 }
+
 /**
  * @function  cosec
- * @description  returns the cosecant of a number in degrees or radians
+ * @description  evaluates the cosecant of a number in degrees or radians
+ * @params  none
  * Examples:
- * - cosec(60 rad) to -3.280725574403968
- * - cosec(60 deg) to 1.1547005383792517
+ * - cosec(60 radian) to -3.280725574403968
+ * - cosec(60 degree) to 1.1547005383792517
  */
 function cosec() {
-  if (deg == 0) {
+  if (degree == 0) {
     input.value = 1 / Math.sin((Math.PI / 180) * input.value);
   } else {
     input.value = 1 / Math.sin(input.value);
@@ -207,34 +237,43 @@ function cosec() {
 // Functions
 /**
  * @function  floor
- * @description  always rounds down and returns the largest integer less than or equal to a given number
+ * @description  to round down and evaluates the largest integer less than or equal to a given number
+ * @params  none
  * Examples:
  * - 5.85 = 5
  */
 function floor() {
   input.value = Math.floor(input.value);
 }
+
 /**
  * @function  ceil
- * @description  always rounds up and returns the smaller integer greater than or equal to a given number
+ * @description  to round up and evaluates the smaller integer greater than or equal to a given number
+ * @params  none
  * Examples:
  * - 5.23 = 6
  */
 function ceil() {
   input.value = Math.ceil(input.value);
 }
+
 /**
- * @function  rand
- * @description  returns a random number from 0 up to but not including 1
+ * @function  random
+ * @description  gives a random number from 0 up to but not including 1
+ * @params  none
  * Examples:
  * - 0.8535283651436478
+ * - 0.6407613844878561
+ * - 0.1827885058635727
  */
-function rand() {
+function random() {
   input.value = Math.random();
 }
+
 /**
  * @function  mod
- * @description  returns the absolute value of a number
+ * @description  evaluates the absolute value of a number
+ * @params  none
  * Examples:
  * - -6.235 = 6.235
  */
@@ -245,31 +284,38 @@ function mod() {
 /**
  * @function  pi
  * @description  displays the value of PI
+ * @params  none
  * Examples:
  * - 3.141592653589793
  */
 function pi() {
   input.value = Math.PI;
 }
+
 /**
  * @function  euler
  * @description  displays the value of Euler's number
+ * @params  none
  * Examples:
  * - 2.718281828459045
  */
 function euler() {
   input.value = Math.E;
 }
+
 /**
  * @function  clearAll
- * @description  clears the input field
+ * @description  to entirely clear the input field
+ * @params  none
  */
 function clearAll() {
   input.value = "";
 }
+
 /**
  * @function  remove
- * @description  removes one number from the end
+ * @description  to remove one number from the right side end once clicking on it
+ * @params  none
  * Examples:
  * - 5.2893 to 5.289
  */
@@ -279,25 +325,30 @@ function remove() {
 
 /**
  * @function  square
- * @description  returns square of a number
+ * @description  performs square of a number
+ * @params  none
  * Examples:
  * - 5^2 to 25
  */
 function square() {
   input.value = Math.pow(input.value, 2);
 }
+
 /**
  * @function  byX
- * @description  returns inverse of a number
+ * @description  performs inverse of a number
+ * @params  none
  * Examples:
  * - 1/2 to 0.5
  */
 function byX() {
   input.value = 1 / input.value;
 }
+
 /**
  * @function  exponent
- * @description  returns the value of E^x, where E is Euler's number
+ * @description  evaluates the value of E^x, where E is Euler's number
+ * @params  none
  * Examples:
  * - E^5 to 148.4131591025766
  */
@@ -306,17 +357,32 @@ function exponent() {
 }
 
 /**
- * @function  sqrRoot
- * @description  returns the square root of a number
+ * @function modulo
+ * @description evaluates the remainder after dividing one number by another.
+ * @params  none
+ * Examples:
+ * - 9%7 to 2
+ * - 2%2 to 0
+ */
+function modulo() {
+  input.value += "%";
+}
+
+/**
+ * @function  squareRoot
+ * @description  performs the square root of a number
+ * @params  none
  * Examples:
  * - sqaureRoot(25) to 5
  */
-function sqrRoot() {
+function squareRoot() {
   input.value = Math.sqrt(input.value);
 }
+
 /**
- * @function  Factorial
- * @description  returns the factorial of a number
+ * @function  factorial
+ * @description  performs the factorial of a number
+ * @params  none
  * Examples:
  * - 5! to 120
  */
@@ -325,7 +391,7 @@ function factorial() {
   if (number == 0 || number == 1) {
     input.value = "1";
   } else if (number > 1) {
-    for (let i = number-1; i > 1; i--) {
+    for (let i = number - 1; i > 1; i--) {
       number = number * i;
     }
     input.value = number;
@@ -333,45 +399,53 @@ function factorial() {
 }
 
 /**
- * @function  RaiseTo10
+ * @function  raiseTo10
  * @description  gives 10 to the power of a number
+ * @params  none
  * Examples:
  * - 10^3 to 1000
  */
-function RaiseTo10() {
+function raiseTo10() {
   input.value = Math.pow(10, input.value);
 }
+
 /**
- * @function  log
- * @description  returns log10 of a number
+ * @function  logarithm
+ * @description  performs logarithm(log base 10) of a number
+ * @params  none
  * Examples:
  * - log(2) to 0.3010299956639812
  */
-function log() {
+function logarithm() {
   input.value = Math.log10(input.value);
 }
+
 /**
- * @function  ln
- * @description  returns ln of a number
+ * @function  naturalLogarithm
+ * @description  performs natural logarithm(ln base e) of a number
+ * @params  none
  * Examples:
  * - ln(2) to 0.6931471805599453
  */
-function ln() {
+function naturalLogarithm() {
   input.value = Math.log(input.value);
 }
+
 /**
  * @function  xRaisey
- * @description  returns a number raised to another number
+ * @description  evaluates a number raised to another number
+ * @params  none
  * Examples:
  * - 6^3 to 216
  */
-let x, y;
 function xRaisey() {
   input.value += "^";
 }
+
 /**
  * @function  signChange
- * @description  returns a number with its opposite sign
+ * @description  gives a number with its opposite sign
+ * @params  none
  * Examples:
  * - 7 to -7
  */
@@ -379,26 +453,28 @@ function signChange() {
   input.value = -1 * input.value;
 }
 
-let arr = [];
-let numArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 /**
  * @function  calculate
  * @description  to evaluate the basic expressions
+ * @params  none
  */
 function calculate() {
   var input = document.getElementById("input");
   input.value = input.value.replaceAll("^", "**");
   var result = input.value;
-  arr.push(input.value);
-  let va = result.charAt(result.length-1);
-
+  let va = result.charAt(result.length - 1);
   // Error handling
+  /**
+   * this try catch handles the error when user enters invalid input
+   * Examples:
+   * 9-6+5 = 8
+   * 5-6/5* = Invalid Input!
+   */
   try {
     function cal(user) {
       return new Function("return " + user)();
     }
     const output = cal(`${result}`);
- 
     document.getElementById("input").value = output;
   } catch (err) {
     const errDiv = document.getElementById("error-div");
@@ -411,19 +487,23 @@ function calculate() {
 }
 
 /**
- * @function  calculate
+ * @function  changeDropdown
  * @description  to toggle the buttons
+ * @params  none
  */
-let d = 0;
 function changeDropdown(display1, display2) {
-  if (d == 1) {
+  /**
+   * this code is for changing the dropdown on pressing the 2nd button
+   * if the dropdownChange variable is set to 1 then display the display2 class buttons and vice versa
+   */
+  if (dropdownChange == 1) {
     for (let x of document.getElementsByClassName(display2)) {
       x.style.display = " inline-block";
     }
     for (let x of document.getElementsByClassName(display1)) {
       x.style.display = "none";
     }
-    d = 0;
+    dropdownChange = 0;
   } else {
     for (let x of document.getElementsByClassName(display1)) {
       x.style.display = " inline-block";
@@ -431,58 +511,69 @@ function changeDropdown(display1, display2) {
     for (let x of document.getElementsByClassName(display2)) {
       x.style.display = "none";
     }
-    d = 1;
+    dropdownChange = 1;
   }
 }
 
 /**
  * @function  cube
  * @description  to calculate the cube of a number
+ * @params  none
  * Examples:
  * - 2^3 to 8
  */
 function cube() {
   input.value = Math.pow(input.value, 3);
 }
+
 /**
  * @function  cubeRoot
  * @description  to calculate the cube root
+ * @params  none
  * Examples:
  * - 125 to 5
  */
 function cubeRoot() {
   input.value = Math.cbrt(input.value);
 }
+
 /**
  * @function  logPlus
  * @description  to calculate logarithm of 1+p number
+ * @params  none
  * Examples:
  * - log1p(8) to 2.1972245773362196
  */
 function logPlus() {
   input.value = Math.log1p(input.value);
 }
+
 /**
- * @function  RaiseTo2
+ * @function  raiseTo2
  * @description  to calculate 2 to power of a number
+ * @params  none
  * Examples:
  * - 2^5 to 32
  */
-function RaiseTo2() {
+function raiseTo2() {
   input.value = Math.pow(2, input.value);
 }
+
 /**
  * @function  expMinus
- * @description  to calculate e^x*  -1 where x is number
+ * @description  to calculate e^x-1 where x is number
+ * @params  none
  * Examples:
  * - expm1(2) to 6.38905609893065
  */
 function expMinus() {
   input.value = Math.expm1(input.value);
 }
+
 /**
  * @function  eRaisex
  * @description  to calculate e^x where x is number
+ * @params  none
  * Examples:
  * - e^2 to 7.3890560989306495
  */
