@@ -2,7 +2,7 @@ body {
     width: 100%;
 }
 
-/* style for calculator body */
+/* Style for calculator body */
 .calculator-body {
     background-color: #dee0e0;
     width: 500px;
@@ -16,7 +16,7 @@ body {
     display: flex;
 }
 
-/* style for the input field */
+/* Style for the input field */
 .col-4 input {
     outline: none;
     width: 500px;
@@ -47,7 +47,7 @@ body {
     margin: 2px 2px 2px 2px;
 }
 
-#deg {
+#degree {
     width: 70px;
 }
 
@@ -79,7 +79,7 @@ body {
     width: 18px;
 }
 
-/* style for the buttons */
+/* Style for the buttons */
 #button-style {
     font-weight: 400;
     background-color: #edeff2;
@@ -124,7 +124,7 @@ body {
     background-color: #77C3EC;
 }
 
-/* For changing dropdown */
+/* For changing the dropdown */
 .display2 {
     display: none;
 }
