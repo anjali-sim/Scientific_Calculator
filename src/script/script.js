@@ -139,14 +139,14 @@ function memorySave() {
 
 // Trigonometry Functions
 /**
- * @function  sin
+ * @function  sine
  * @description   evaluates the sine of a number in degrees or radians
  * @params  none
  * Examples:
  * - sin(90 radian) to 0.8939966636005579
  * - sin(90 degree) to 1
  */
-function sin() {
+function sine() {
   if (degree == 0) {
     input.value = Math.sin((Math.PI / 180) * input.value);
   } else {
@@ -155,14 +155,14 @@ function sin() {
 }
 
 /**
- * @function  cos
+ * @function  cosine
  * @description  evaluates the cosine of a number in degrees or radians
  * @params  none
  * Examples:
  * - cos(45 radian) to 0.5253219888177297
  * - cos(45 degree) to 0.7071067811865476
  */
-function cos() {
+function cosine() {
   if (degree == 0) {
     input.value = Math.cos((Math.PI / 180) * input.value);
   } else {
@@ -171,14 +171,14 @@ function cos() {
 }
 
 /**
- * @function  tan
+ * @function  tangent
  * @description  evaluates the tangent of a number in degrees or radians
  * @params  none
  * Examples:
  * - tan(60 radian) to 0.320040389379563
  * - tan(60 degree) to 1.7320508075688767
  */
-function tan() {
+function tangent() {
   if (degree == 0) {
     input.value = Math.tan((Math.PI / 180) * input.value);
   } else {
@@ -187,14 +187,14 @@ function tan() {
 }
 
 /**
- * @function  cot
+ * @function  cotangent
  * @description  evaluates the cotangent of a number in degrees or radians
  * @params  none
  * Examples:
  * - cot(30 radian) to -0.15611995216165922
  * - cot(30 degree) to 1.7320508075688774
  */
-function cot() {
+function cotangent() {
   if (degree == 0) {
     input.value = 1 / Math.tan((Math.PI / 180) * input.value);
   } else {
@@ -203,14 +203,14 @@ function cot() {
 }
 
 /**
- * @function  sec
+ * @function  secant
  * @description  evaluates the secant of a number in degrees or radians
  * @params  none
  * Examples:
  * - sec(45 radian) to 1.9035944074044246
  * - sec(45 degree) to 1.414213562373095
  */
-function sec() {
+function secant() {
   if (degree == 0) {
     input.value = 1 / Math.cos((Math.PI / 180) * input.value);
   } else {
@@ -219,14 +219,14 @@ function sec() {
 }
 
 /**
- * @function  cosec
+ * @function  cosecant
  * @description  evaluates the cosecant of a number in degrees or radians
  * @params  none
  * Examples:
  * - cosec(60 radian) to -3.280725574403968
  * - cosec(60 degree) to 1.1547005383792517
  */
-function cosec() {
+function cosecant() {
   if (degree == 0) {
     input.value = 1 / Math.sin((Math.PI / 180) * input.value);
   } else {
@@ -277,7 +277,7 @@ function random() {
  * Examples:
  * - -6.235 = 6.235
  */
-function mod() {
+function modulus() {
   input.value = Math.abs(input.value);
 }
 
