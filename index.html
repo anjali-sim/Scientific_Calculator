@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="./src/assets/images/calculator.png">
   <title>Scientific Calculator</title>
 </head>
 
@@ -58,25 +59,25 @@
               <ul class="dropdown-menu">
                 <div class="d-flex division-view">
                   <li>
-                    <button class="dropdown-item" value="sin" onclick="sin()">sin</button>
+                    <button class="dropdown-item" value="sin" onclick="sine()">sin</button>
                   </li>
                   <li>
-                    <button class="dropdown-item" value="cos" onclick="cos()">cos</button>
+                    <button class="dropdown-item" value="cos" onclick="cosine()">cos</button>
                   </li>
                   <li>
-                    <button class="dropdown-item" value="tan" onclick="tan()">tan</button>
+                    <button class="dropdown-item" value="tan" onclick="tangent()">tan</button>
                   </li>
                 </div>
 
                 <div class="d-flex">
                   <li>
-                    <button class="dropdown-item" value="cot" onclick="cot()">cot</button>
+                    <button class="dropdown-item" value="cot" onclick="cotangent()">cot</button>
                   </li>
                   <li>
-                    <button class="dropdown-item" value="sec" onclick="sec()">sec</button>
+                    <button class="dropdown-item" value="sec" onclick="secant()">sec</button>
                   </li>
                   <li>
-                    <button class="dropdown-item" value="cosec" onclick="cosec()">cosec</button>
+                    <button class="dropdown-item" value="cosec" onclick="cosecant()">cosec</button>
                   </li>
                 </div>
               </ul>
@@ -104,7 +105,7 @@
                     <button class="dropdown-item" value="rand" onclick="random()">rand</button>
                   </li>
                   <li>
-                    <button class="dropdown-item styling" value="mod" onclick="mod()">|x|</button>
+                    <button class="dropdown-item styling" value="mod" onclick="modulus()">|x|</button>
                   </li>
                 </div>
               </ul>
@@ -132,7 +133,7 @@
             <button type="button" class="display2" class="btn" value="x^3" id="button-style"
               onclick="cube()">x<sup>3</sup></button>
             <button type="button" class="btn" value="1/x" id="button-style" onclick="byX()"><small>1/x</small></button>
-            <button type="button" class="btn" value="|x|" id="button-style" onclick="mod()">|x|</button>
+            <button type="button" class="btn" value="|x|" id="button-style" onclick="modulus()">|x|</button>
             <button type="button" class="btn" value="exp" id="button-style" onclick="exponent()">exp</button>
             <button type="button" class="btn" value="%" id="button-style" onclick="modulo()">mod</button>
           </div>
@@ -215,4 +216,5 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"></script>
 </body>
+
 </html>
