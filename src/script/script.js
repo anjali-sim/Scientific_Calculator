@@ -6,6 +6,8 @@ let memoryStack = [];
 let x, y;
 // for changing the dropdowns
 let dropdownChange = 0;
+// for restricting the alphabets and special characters in the input field
+const inputField = document.getElementById("input");
 
 /**
  * @function  displayInputValue
@@ -18,23 +20,6 @@ let dropdownChange = 0;
  */
 function displayInputValue(value) {
   input.value += value;
-}
-
-/**
- * @function  checkInput
- * @description  validating to restrict the alphabets in the input field
- * @params  string
- * stringExpression:  string
- * @returns  void
- * Examples: if the user enters alphabets from keyboard, then restrict it from entering into the input field
- * - asfhjk to 0
- * - 5869*2 to 5869*2
- */
-function checkInput(stringExpression) {
-  const invalidChars = /[^0-9|+|\-|*|.|!|^|(|)|%/]/gi;
-  if (invalidChars.test(stringExpression.value)) {
-    stringExpression.value = stringExpression.value.replace(invalidChars, "");
-  }
 }
 
 /**
@@ -52,6 +37,45 @@ function degreeToRadian() {
     document.getElementById("degree").innerHTML = "DEG";
   }
 }
+
+/**
+ * @description  validating to restrict the alphabets and special characters in the input field using event listener based on the ASCII code
+ * Examples: if the user enters alphabets or special characters from keyboard, then restrict it from entering into the input field
+ * - asfhjk to 0
+ * - #&;} to 0
+ * - 5869*2 to 5869*2
+ */
+inputField.addEventListener("keypress", function (event) {
+  const keyCode = event.keyCode;
+  if (
+    (keyCode >= 65 && keyCode <= 90) ||
+    (keyCode >= 97 && keyCode <= 122) ||
+    keyCode == 33 ||
+    keyCode == 34 ||
+    keyCode == 35 ||
+    keyCode == 36 ||
+    keyCode == 38 ||
+    keyCode == 39 ||
+    keyCode == 58 ||
+    keyCode == 59 ||
+    keyCode == 60 ||
+    keyCode == 61 ||
+    keyCode == 62 ||
+    keyCode == 63 ||
+    keyCode == 64 ||
+    keyCode == 91 ||
+    keyCode == 92 ||
+    keyCode == 93 ||
+    keyCode == 95 ||
+    keyCode == 96 ||
+    keyCode == 123 ||
+    keyCode == 124 ||
+    keyCode == 125 ||
+    keyCode == 126
+  ) {
+    event.preventDefault();
+  }
+});
 
 /**
  * @function  fixedToExponent
@@ -271,7 +295,7 @@ function random() {
 }
 
 /**
- * @function  mod
+ * @function  modulus
  * @description  evaluates the absolute value of a number
  * @params  none
  * Examples:
@@ -313,13 +337,13 @@ function clearAll() {
 }
 
 /**
- * @function  remove
+ * @function  removeOneElementFromEnd
  * @description  to remove one number from the right side end once clicking on it
  * @params  none
  * Examples:
  * - 5.2893 to 5.289
  */
-function remove() {
+function removeOneElementFromEnd() {
   input.value = input.value.slice(0, -1);
 }
 
@@ -329,6 +353,7 @@ function remove() {
  * @params  none
  * Examples:
  * - 5^2 to 25
+ * - -6^2 to 36
  */
 function square() {
   input.value = Math.pow(input.value, 2);
@@ -374,9 +399,19 @@ function modulo() {
  * @params  none
  * Examples:
  * - sqaureRoot(25) to 5
+ * - squareRoot(-4) to Error!
  */
 function squareRoot() {
-  input.value = Math.sqrt(input.value);
+  if (input.value < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else {
+    input.value = Math.sqrt(input.value);
+  }
 }
 
 /**
@@ -388,7 +423,14 @@ function squareRoot() {
  */
 function factorial() {
   let number = Number(input.value);
-  if (number == 0 || number == 1) {
+  if (number < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else if (number == 0 || number == 1) {
     input.value = "1";
   } else if (number > 1) {
     for (let i = number - 1; i > 1; i--) {
@@ -417,7 +459,16 @@ function raiseTo10() {
  * - log(2) to 0.3010299956639812
  */
 function logarithm() {
-  input.value = Math.log10(input.value);
+  if (input.value < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else {
+    input.value = Math.log10(input.value);
+  }
 }
 
 /**
@@ -428,17 +479,26 @@ function logarithm() {
  * - ln(2) to 0.6931471805599453
  */
 function naturalLogarithm() {
-  input.value = Math.log(input.value);
+  if (input.value < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else {
+    input.value = Math.log(input.value);
+  }
 }
 
 /**
- * @function  xRaisey
+ * @function  xRaiseY
  * @description  evaluates a number raised to another number
  * @params  none
  * Examples:
  * - 6^3 to 216
  */
-function xRaisey() {
+function xRaiseY() {
   input.value += "^";
 }
 
@@ -462,7 +522,6 @@ function calculate() {
   var input = document.getElementById("input");
   input.value = input.value.replaceAll("^", "**");
   var result = input.value;
-  let va = result.charAt(result.length - 1);
   // Error handling
   /**
    * this try catch handles the error when user enters invalid input
@@ -477,7 +536,7 @@ function calculate() {
     const output = cal(`${result}`);
     document.getElementById("input").value = output;
   } catch (err) {
-    const errDiv = document.getElementById("error-div");
+    const errDiv = document.getElementById("errorDiv");
     errDiv.textContent = "Invalid Input!";
     setTimeout(() => {
       errDiv.textContent = "";
@@ -531,10 +590,20 @@ function cube() {
  * @description  to calculate the cube root
  * @params  none
  * Examples:
- * - 125 to 5
+ * - cubeRoot(125) to 5
+ * - cubeRoot(-8) to Error!
  */
 function cubeRoot() {
-  input.value = Math.cbrt(input.value);
+  if (input.value < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else {
+    input.value = Math.cbrt(input.value);
+  }
 }
 
 /**
@@ -545,7 +614,16 @@ function cubeRoot() {
  * - log1p(8) to 2.1972245773362196
  */
 function logPlus() {
-  input.value = Math.log1p(input.value);
+  if (input.value < 0) {
+    const errDiv = document.getElementById("errorDiv");
+    errDiv.textContent = "Error!";
+    setTimeout(() => {
+      errDiv.textContent = "";
+      document.getElementById("input").value = "";
+    }, 2000);
+  } else {
+    input.value = Math.log1p(input.value);
+  }
 }
 
 /**
@@ -554,6 +632,7 @@ function logPlus() {
  * @params  none
  * Examples:
  * - 2^5 to 32
+ * - 2^54524 to Infinity
  */
 function raiseTo2() {
   input.value = Math.pow(2, input.value);
