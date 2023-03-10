@@ -79,6 +79,11 @@ body {
     width: 18px;
 }
 
+/* For displaying Error or Invalid Input */
+#errorDiv {
+    color: red;
+}
+
 /* Style for the buttons */
 #button-style {
     font-weight: 400;

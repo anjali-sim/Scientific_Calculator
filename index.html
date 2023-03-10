@@ -22,12 +22,12 @@
       <div class="display">
         <div class="row">
           <div class="col-4">
-            <input type="text" id="input" placeholder="0" onChange="checkInput(this)" onKeyup="checkInput(this)" />
+            <input type="text" id="input" placeholder="0" />
           </div>
         </div>
       </div>
       <!-- For displaying the error message -->
-      <div class="text-center" id="error-div"></div>
+      <div class="text-center" id="errorDiv"></div>
       <!-- Degree to Radian toggle and Fixed to Exponent(FE) button -->
       <div class="functions">
         <div class="row">
@@ -41,19 +41,19 @@
           <div class="col">
             <button type="button" class="btn" value="mc" id="mc" onclick="memoryClear()" disabled>MC</button>
             <button type="button" class="btn" value="mr" id="mr" onclick="memoryRecall()" disabled>MR</button>
-            <button type="button" class="btn" value="m+" id="m+" onclick="memoryAdd()">M+</button>
-            <button type="button" class="btn" value="m-" id="m-" onclick="memorySubtract()">M-</button>
-            <button type="button" class="btn" value="ms" id="ms" onclick="memorySave()">MS</button>
+            <button type="button" class="btn" value="m+" onclick="memoryAdd()">M+</button>
+            <button type="button" class="btn" value="m-" onclick="memorySubtract()">M-</button>
+            <button type="button" class="btn" value="ms" onclick="memorySave()">MS</button>
           </div>
         </div>
 
         <div class="row">
           <div class="col">
-            <!-- Trigonometry dropdown - sin, cos, tan, cot, sec, cosec -->
+            <!-- Trigonometry dropdown - sine, cosine, tangent, cotangent, secant, cosecant -->
             <div class="dropdown">
               <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="./src/assets/images/right-triangle.png" alt="Right Angle Triangle" class="image">&nbsp;<span
-                  class="dropdown-text">Trigonometry</span>&nbsp;
+                <img src="./src/assets/images/right-triangle.png" alt="Right Angle Triangle Symbol"
+                  class="image">&nbsp;<span class="dropdown-text">Trigonometry</span>&nbsp;
                 <small><i class="fa-solid fa-angle-down"></i></small></button>
               <!-- dropdown for different trigo functions -->
               <ul class="dropdown-menu">
@@ -82,10 +82,10 @@
                 </div>
               </ul>
             </div>
-            <!-- Function dropdown - floor, ceil, random, mod -->
+            <!-- Function dropdown - floor, ceil, random, modulus -->
             <div class="dropdown">
               <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="./src/assets/images/function.png" alt="Function Sign" class="image">&nbsp;<span
+                <img src="./src/assets/images/function.png" alt="Function Symbol" class="image">&nbsp;<span
                   class="dropdown-text">Function</span>&nbsp;
                 <small><i class="fa-solid fa-angle-down"></i></small></button>
               <!-- dropdown for different function -->
@@ -102,10 +102,10 @@
 
                 <div class="d-flex">
                   <li>
-                    <button class="dropdown-item" value="rand" onclick="random()">rand</button>
+                    <button class="dropdown-item" value="rand" onclick="random()">random</button>
                   </li>
                   <li>
-                    <button class="dropdown-item styling" value="mod" onclick="modulus()">|x|</button>
+                    <button class="dropdown-item" value="mod" onclick="modulus()">|x|</button>
                   </li>
                 </div>
               </ul>
@@ -121,11 +121,11 @@
             <button type="button" class="btn" value="pi" class="pi" id="button-style" onclick="pi()">π</button>
             <button type="button" class="btn" value="euler-number" id="button-style" onclick="euler()">e</button>
             <button type="button" class="btn" id="button-style" onclick="clearAll()">C</button>
-            <button type="button" class="btn" value="cancel" id="button-style-red" onclick="remove()"><img
+            <button type="button" class="btn" value="cancel" id="button-style-red" onclick="removeOneElementFromEnd()"><img
                 src="./src/assets/images/cancel.png" alt="cancel" class="image1"></button>
           </div>
         </div>
-        <!-- x^2, x^3, 1/x, mod, exponent, modulo buttons -->
+        <!-- x^2, x^3, 1/x, modulus, exponent, modulo buttons -->
         <div class="row">
           <div class="col">
             <button type="button" class="display1" class="btn" value="x^2" id="button-style"
@@ -156,7 +156,7 @@
         <div class="row">
           <div class="col">
             <button type="button" class="display1" class="btn" value="^" id="button-style"
-              onclick="xRaisey()">x<sup>y</sup></button>
+              onclick="xRaiseY()">x<sup>y</sup></button>
             <button type="button" class="display2" class="btn" value="2^x" id="button-style"
               onclick="raiseTo2()">2<sup>x</sup></button>
             <button type="button" class="btn" value="7" id="button-design" onclick="displayInputValue(value)">7</button>
