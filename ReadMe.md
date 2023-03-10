@@ -2,7 +2,7 @@
 ## Scientific Calculator
 In this project, I have developed a scientific calculator using HTML, CSS and JavaScript programming languages.
 It allows users to perform various operations like arithmetic, memory, trigonometric, logarithmic, etc through a web browser.
-In this project, I have not used the eval() function of JavaScript. I have followed the proper coding standards. I have also accomplished the right 
+In this project, I have not used the eval() function of JavaScript. The calculator can also handle errors. We can input the numbers from the display as well as from keyboard and it cannot accept the alphabets and special characters as they are restricted. I have followed the proper coding standards. I have also accomplished the right 
 commenting and formatting in the practical.
 
 ## Tech Stack
@@ -19,12 +19,12 @@ commenting and formatting in the practical.
 </p>
 
 ## Features of the Calculator
-1. User Interface : The User Interface(UI) of the calculator is user-friendly, which means the buttons are labelled properly so to make users understand and use it smoothly.
+<strong>1. User Interface :</strong> The User Interface(UI) of the calculator is user-friendly, which means the buttons are labelled properly so to make users understand and use it smoothly.
 
-2. Responsive Design : The calculator is responsive which means to make web pages that render well on all screen sizes and resolutions while ensuring good usability.
+<strong>2. Responsive Design :</strong> The calculator is responsive which means to make web pages that render well on all screen sizes and resolutions while ensuring good usability.
 I have made it responsive using bootstrap.
 
-3. Arithmetic Operations : The calculator can perform the basic arithmetic operations like
+<strong>3. Arithmetic Operations :</strong> The calculator can perform the basic arithmetic operations like
 <ul><li>Addition(+)</li>
 <li>Subtraction(-)</li>
 <li>Multiplication(*)</li>
@@ -33,7 +33,7 @@ I have made it responsive using bootstrap.
 <p>Eg : 2-6*(5-3)/6+5 = 0, 6*9/ = Invalid Input!</p>
 
 
-4. Trigonometric Functions : The calculator can also perform the trigonometric functions such as below. We can give the value in degrees or radians as per the user needs.
+<strong>4. Trigonometric Functions :</strong> The calculator can also perform the trigonometric functions such as below. We can give the value in degrees or radians as per the user needs.
 <ul><li>Sine(sin)</li>
 <li>Cosine(cos)</li>
 <li>Tangent(tan)</li>
@@ -43,7 +43,7 @@ I have made it responsive using bootstrap.
 <p>Steps to use it : To perform any trigonometric function, user needs to first enter the value and then press the specific trigonometric function to get the answer. The user can enter the value in degrees or in radians by using the DEG to RAD toggle buton.</p>
 <p>Eg : sin(90 degrees) = 1, sin(180 radians) = -0.8011526357338304</p>
 
-5. Memory Functions : The calculator is capable of performing the memory functions like storing the values in the memory array.
+<strong>5. Memory Functions :</strong> The calculator is capable of performing the memory functions like storing the values in the memory array.
 <ul><li>Memory Clear(MC)</li>
 <li>Memory Recall(MR)</li>
 <li>Memory Add(M+)</li>
@@ -52,14 +52,14 @@ I have made it responsive using bootstrap.
 <p>Steps to use it : To perform the memory functions, user can perform any operation and press MS button in the calculator and then can add a specific number in the memory. All the memory functions are reflected in an array in the console.</p>
 <p>Eg : 3 MS and then 6 M+ then in memory stack we will get 9.</p>
 
-6. Logarithmic Functions : The calculator can also perform the logarithmic functions such as follows
+<strong>6. Logarithmic Functions :</strong> The calculator can also perform the logarithmic functions such as follows
 <ul><li>log</li>
 <li>ln</li>
 <li>log1p</li></ul>
 <p>Steps to use it : To perform the logorithmic functions, user has to enter the number and then press the function button.</p>
 <p>Eg : log(5) = 0.6989700043360189, ln(5) = 1.6094379124341003, log1p(8) = 2.1972245773362196</p>
 
-7. Supplementary Operations : The calculator can perform additional operations such as 
+<strong>7. Supplementary Operations :</strong> The calculator can perform additional operations such as 
 <ul><li>Factorial</li>
 <li>Square</li>
 <li>Cube Root</li>
@@ -68,6 +68,14 @@ I have made it responsive using bootstrap.
 <li>Sign Change</li></ul>
 <p>Steps to use it : To perform the supplementary operations, user needs to first enter the number and then press the particular function</p>
 <p>Eg : 5(1/x) = 0.2, 4^3 = 64, 6! = 720</p>
+
+<strong>8. Supplememtary Feature :</strong> The calculator can throw errors in some invalid expressions.
+<p>
+Eg : If user tries to find log of negative number, then it shows Error!<br>
+Eg : If user tries to find Square root or Cube root of negative number, then it shows Error!<br>
+Eg : If user enters an expression like 5+6-8* , then it shows Invalid Input!
+</p>
+
 
 ## UI of the calculator
 ![Screenshot from 2023-03-01 17-15-39](https://user-images.githubusercontent.com/122269010/222130570-dbe2a39e-7fa0-4d9a-97f1-ca65638ae73b.png)
